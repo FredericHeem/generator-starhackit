@@ -1,0 +1,3 @@
+[submodule "generators/app/templates/starhackit"]
+	path = generators/app/templates/starhackit
+	url = https://github.com/FredericHeem/starhackit.git
