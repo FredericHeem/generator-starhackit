@@ -4,7 +4,7 @@
   "description": "Starhackit Yeoman generator - Fullstack starterkit based on react and node",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "https://github.com/FredericHeem/starhackit",
+  "repository": "https://github.com/FredericHeem/generator-starhackit",
   "author": {
     "name": "FredericH",
     "email": "frederic.heem@gmail.com",
@@ -23,6 +23,7 @@
     "react",
     "starterkit",
     "es7",
+    "es6",
     "ansible",
     "sequelize"
   ],
