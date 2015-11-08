@@ -35,7 +35,7 @@ module.exports = yeoman.generators.Base.extend({
     say: function () {
       // Have Yeoman greet the user.
       this.log(yosay(
-        'Welcome to the sweet ' + chalk.red('Starthackit') + ' generator!'
+        'Welcome to the sweet ' + chalk.red('Starhackit') + ' generator!'
       ));
     },
 
@@ -125,15 +125,11 @@ module.exports = yeoman.generators.Base.extend({
 },
   writing: {
     app: function () {
-      this.sourceRoot(path.join(__dirname, 'templates'));
-      this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
-      );
       this.sourceRoot(path.join(__dirname, 'templates/starhackit'));
       this.directory('server');
       this.directory('client');
       this.directory('deploy');
+      this.copy('package.json');
       this.fs.copy(
         this.templatePath('.travis.yml'),
         this.destinationPath('.travis.yml')
