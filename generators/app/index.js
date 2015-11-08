@@ -109,7 +109,7 @@ module.exports = yeoman.generators.Base.extend({
    },
    askForRepoUrl: function () {
     var done = this.async();
-    console.log("this.options.githubAccount ", this.props.githubAccount)
+    //console.log("this.options.githubAccount ", this.props.githubAccount)
     var prompts = [{
       name: 'repoUrl',
       message: 'repository url',
@@ -125,12 +125,12 @@ module.exports = yeoman.generators.Base.extend({
 },
   writing: {
     app: function () {
-      this.sourceRoot(path.join(__dirname, 'template'));
+      this.sourceRoot(path.join(__dirname, 'templates'));
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
       );
-      this.sourceRoot(path.join(__dirname, '../../../'));
+      this.sourceRoot(path.join(__dirname, 'templates/starhackit'));
       this.directory('server');
       this.directory('client');
       this.directory('deploy');
@@ -143,7 +143,7 @@ module.exports = yeoman.generators.Base.extend({
 
     projectfiles: function () {
       var currentPkg = this.fs.readJSON(this.destinationPath('package.json'), {});
-      console.log("name: ", this.props.name);
+      //console.log("name: ", this.props.name);
       var pkg = {
         name: _.kebabCase(this.props.name),
         version: '0.0.0',
