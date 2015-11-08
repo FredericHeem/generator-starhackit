@@ -1,6 +1,6 @@
 {
   "name": "generator-starhackit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Starhackit Yeoman generator - Fullstack starterkit based on react and node",
   "license": "MIT",
   "main": "app/index.js",
