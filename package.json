@@ -12,7 +12,9 @@
     "url": "https://github.com/FredericHeem"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags"
   },
   "files": [
     "generators"
