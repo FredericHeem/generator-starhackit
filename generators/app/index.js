@@ -44,20 +44,19 @@ module.exports = yeoman.Base.extend({
         this.props.name = _.kebabCase(this.options.name);
         return;
       }
-      var done = this.async();
+      let me = this
       this.props = {};
-      askName({
-        name: 'name',
-        message: 'Project Name',
-        default: path.basename(process.cwd()),
-        filter: _.kebabCase,
-        validate: function (str) {
-          return str.length > 0;
-        }
-      }, this, function (name) {
-        this.props.name = name;
-        done();
-      }.bind(this));
+      return askName({
+            name: 'name',
+            message: 'Project Name',
+            default: path.basename(process.cwd()),
+            filter: _.kebabCase,
+            validate: function (str) {
+              return str.length > 0;
+            }
+          }, this).then(function (name) {
+            me.props.name = name;
+          });
     },
 
     askFor: function () {
