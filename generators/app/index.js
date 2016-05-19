@@ -119,11 +119,8 @@ module.exports = yeoman.Base.extend({
       this.sourceRoot(path.join(__dirname, 'templates/starhackit'));
       this.fs.copy(
         this.templatePath('**'),
-        this.destinationPath('.')
-      );
-      this.fs.copy(
-        this.templatePath('.**'),
-        this.destinationPath('.')
+        this.destinationPath('.'),
+        { globOptions: { dot: true } }
       );
     },
 
