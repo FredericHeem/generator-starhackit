@@ -12,7 +12,6 @@ var githubUsername = require('github-username');
 module.exports = yeoman.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments);
-
   },
   initializing: function () {
     this.pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
@@ -60,8 +59,6 @@ module.exports = yeoman.Base.extend({
     },
 
     askFor: function () {
-     var done = this.async();
-
      var prompts = [{
        name: 'description',
        message: 'Description',
@@ -87,27 +84,23 @@ module.exports = yeoman.Base.extend({
        message: 'Package keywords (comma to split)',
        filter: _.words
      }];
-
-     this.prompt(prompts, function (props) {
-       this.props = extend(this.props, props);
-       done();
-     }.bind(this));
+     return this.prompt(prompts).then(function (answers) {
+      this.answers = answers;
+      this.props = extend(this.props, answers);
+    }.bind(this));
    },
    askForGithubAccount: function () {
-     var done = this.async();
      githubUsername(this.props.authorEmail, function (err, username) {
        this.prompt({
          name: 'githubAccount',
          message: 'GitHub username or organization',
          default: username
-       }, function (prompt) {
+       }).then(function (prompt) {
          this.props.githubAccount = prompt.githubAccount;
-         done();
        }.bind(this));
      }.bind(this));
    },
    askForRepoUrl: function () {
-    var done = this.async();
     //console.log("this.options.githubAccount ", this.props.githubAccount)
     var prompts = [{
       name: 'repoUrl',
@@ -116,24 +109,18 @@ module.exports = yeoman.Base.extend({
       store: true
     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts).then(function (props) {
       this.props = extend(this.props, props);
-      done();
     }.bind(this));
   }
 },
   writing: {
     app: function () {
       this.sourceRoot(path.join(__dirname, 'templates/starhackit'));
-      this.directory('server');
-      this.directory('client');
-      this.directory('deploy');
-      this.copy('package.json');
       this.fs.copy(
-        this.templatePath('.travis.yml'),
-        this.destinationPath('.travis.yml')
+        this.templatePath('.'),
+        this.destinationPath('.')
       );
-
     },
 
     projectfiles: function () {
