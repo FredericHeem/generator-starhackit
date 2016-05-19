@@ -9,14 +9,14 @@ var askName = require('inquirer-npm-name');
 var extend = require('deep-extend');
 var githubUsername = require('github-username');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
   constructor: function () {
-    yeoman.generators.Base.apply(this, arguments);
+    yeoman.Base.apply(this, arguments);
 
   },
   initializing: function () {
     this.pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
-
+    this.pkgSrc = require('../../package.json');
     // Pre set the default props from the information we have at this point
     this.props = {};
 
@@ -35,7 +35,7 @@ module.exports = yeoman.generators.Base.extend({
     say: function () {
       // Have Yeoman greet the user.
       this.log(yosay(
-        'Welcome to the sweet ' + chalk.red('Starhackit') + ' generator!'
+        'Welcome to the sweet ' + chalk.red('Starhackit') + ' generator!' + ' Version: ' + chalk.green(this.pkgSrc.version)
       ));
     },
 
