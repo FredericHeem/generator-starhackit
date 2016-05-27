@@ -117,22 +117,24 @@ module.exports = yeoman.Base.extend({
   writing: {
     app: function () {
       this.sourceRoot(path.join(__dirname, 'templates/starhackit'));
-      this.fs.copy(
+      this.fs.copy([
         this.templatePath('**'),
+        '!**/.git'
+        ],
         this.destinationPath('.'),
         { globOptions: { dot: true } }
       );
 
       //Npm renames .gitignore in .npmignore when publishing,
       //so rename back to .gitignore
-      if (this.src.isFile('.npmignore')) {
-        this.copy('.npmignore', '.gitignore');
+      if (this.fs.exists(this.templatePath('.npmignore'))) {
+        this.fs.copy('.npmignore', '.gitignore');
       }
-      if (this.src.isFile('client/.npmignore')) {
-        this.copy('client/.npmignore', 'client/.npmignore');
+      if (this.fs.exists(this.templatePath('client/.npmignore'))) {
+        this.fs.copy('client/.npmignore', 'client/.npmignore');
       }
-      if (this.src.isFile('server/.npmignore')) {
-        this.copy('server/.npmignore', 'server/.npmignore');
+      if (this.fs.exists(this.templatePath('server/.npmignore'))) {
+        this.fs.copy('server/.npmignore', 'server/.npmignore');
       }
     },
 
