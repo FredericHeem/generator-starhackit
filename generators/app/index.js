@@ -131,10 +131,10 @@ module.exports = yeoman.Base.extend({
         this.fs.copy('.npmignore', '.gitignore');
       }
       if (this.fs.exists(this.templatePath('client/.npmignore'))) {
-        this.fs.copy('client/.npmignore', 'client/.npmignore');
+        this.fs.copy('client/.npmignore', 'client/.gitignore');
       }
       if (this.fs.exists(this.templatePath('server/.npmignore'))) {
-        this.fs.copy('server/.npmignore', 'server/.npmignore');
+        this.fs.copy('server/.npmignore', 'server/.gitignore');
       }
     },
 
