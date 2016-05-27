@@ -122,6 +122,18 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('.'),
         { globOptions: { dot: true } }
       );
+
+      //Npm renames .gitignore in .npmignore when publishing,
+      //so rename back to .gitignore
+      if (this.src.isFile('.npmignore')) {
+        this.copy('.npmignore', '.gitignore');
+      }
+      if (this.src.isFile('client/.npmignore')) {
+        this.copy('client/.npmignore', 'client/.npmignore');
+      }
+      if (this.src.isFile('server/.npmignore')) {
+        this.copy('server/.npmignore', 'server/.npmignore');
+      }
     },
 
     projectfiles: function () {
