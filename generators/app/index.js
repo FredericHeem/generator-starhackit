@@ -53,8 +53,8 @@ module.exports = yeoman.Base.extend({
             validate: function (str) {
               return str.length > 0;
             }
-          }, this).then(function (name) {
-            me.props.name = name;
+          }, this).then(function (answers) {
+            me.props.name = answers.name;
           });
     },
 
