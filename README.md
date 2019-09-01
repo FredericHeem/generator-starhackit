@@ -1,5 +1,7 @@
 # generator-starhackit
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/FredericHeem/generator-starhackit.svg)](https://greenkeeper.io/)
+
 The [starhackit](https://github.com/FredericHeem/starhackit) Yeoman generator
 
 ## Getting Started
